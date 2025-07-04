@@ -1,0 +1,43 @@
+<div style="max-width: 400px; margin: 30px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9; font-family: Arial, sans-serif;">
+  <h2 style="text-align: center; color: #333;">Student Info Form</h2>
+
+  <p style="text-align: center;">Welcome, {{studentName}}!</p>
+
+  <input
+    [(ngModel)]="studentName"
+    [placeholder]="'Enter Student Name'"
+    [ngStyle]="{
+      borderColor: studentName ? 'green' : 'red',
+      borderRadius: '5px',
+      padding: '8px',
+      width: '100%',
+      marginBottom: '10px'
+    }"
+  />
+
+  <p
+    [ngClass]="{
+      'valid-name': studentName.length > 3,
+      'invalid-name': studentName.length <= 3
+    }"
+    style="font-size: 13px; margin-bottom: 10px; color: #555;"
+  >
+    Name must be more than 3 characters.
+  </p>
+
+  <button
+    (click)="submitForm()"
+    style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;"
+  >
+    Submit
+  </button>
+
+  <p *ngIf="submitted" style="color: green; margin-top: 10px;">Student submitted successfully!</p>
+
+  <ul style="margin-top: 20px; padding-left: 20px;">
+    @for (student of students; track $index) {
+      <li style="margin-bottom: 5px;">{{student}}</li>
+    }
+  </ul>
+</div>
+
